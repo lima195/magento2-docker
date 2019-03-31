@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+download-magento
+
+if [ "$MAGENTO_INSTALL_SAMPLE_DATA" == true ]; then
+    download-sampledata
+fi
+
+until echo '\q' | mysql -h $MYSQL_HOST -u $MYSQL_USER -p"$MYSQL_PASSWORD" $MYSQL_DATABASE; do
+    >&2 echo "MySQL is unavailable - sleeping"
+    sleep 1
+done
+
+install-magento
+
+if [ "$REDIS_ENABLED" == true ]; then
+    enable-redis
+fi
+
+if [ "$GRUNT_ENABLED" == true ]; then
+    init-grunt
+fi
+
+su www-data <<EOSU
+
+    cd $MAGEDIR
+
+    bin/magento setup:upgrade
+    if [ -n $MAGENTO_DEPLOY_MODE ]; then
+        bin/magento deploy:mode:set $MAGENTO_DEPLOY_MODE
+    fi
+    bin/magento cache:flush
+EOSU

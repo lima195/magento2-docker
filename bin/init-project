@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+init-container
+set-permissions
+init-config
+init-baseurl
+
+cd $MAGEDIR
+composer install
+
+init-grunt

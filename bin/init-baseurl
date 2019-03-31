@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "adjusting base url for default store to $MAGENTO_URL"
+cat <<EOF | mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE
+REPLACE INTO core_config_data (scope, scope_id, path, value) VALUES
+    ('default', 0, 'web/unsecure/base_url', '$MAGENTO_URL'),
+    ('default', 0, 'web/secure/base_url', '$MAGENTO_URL')
+EOF

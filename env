@@ -1,0 +1,59 @@
+#
+# MySQL Configuration
+#
+MYSQL_HOST=db
+MYSQL_ROOT_PASSWORD=
+MYSQL_USER=magento
+MYSQL_PASSWORD=magento
+MYSQL_DATABASE=magento
+MYSQL_ALLOW_EMPTY_PASSWORD=true
+
+#
+# Downloads Access Token
+# find your at https://account.magento.com/downloads/token/
+# My Account -> Magento -> Account Settings -> Downloads Access Token
+#
+
+MAGE_ID=69fff40cefa2363e0db6196345130c94
+MAGE_TOKEN=13659cb38fc4d7d09ca374bced3d2356
+
+#
+# Basic Magento Configuration (used when installing)
+#
+MAGENTO_DEPLOY_MODE=production
+MAGENTO_INSTALL_SAMPLE_DATA=true
+MAGENTO_VERSION=2.1.8
+MAGENTO_LANGUAGE=de_DE
+MAGENTO_TIMEZONE=Europe/Berlin
+MAGENTO_DEFAULT_CURRENCY=EUR
+
+MAGENTO_URL=http://magento.local
+MAGENTO_ADMIN_FIRSTNAME=Pedro
+MAGENTO_ADMIN_LASTNAME=Lima
+MAGENTO_ADMIN_EMAIL=phgdl.19@gmail.com
+MAGENTO_ADMIN_USERNAME=admin
+MAGENTO_ADMIN_PASSWORD=admin123
+
+MAGENTO_AUTO_INSTALL=
+
+#
+# If you have a mapped volume, you may want to map your
+# user id and group to the one used in the container in 
+# order to avoid permission problems
+# Please note, that you have to reload apache after installation (permission error!)
+#
+#LOCAL_USER=2001
+#LOCAL_GROUP=33
+
+#
+# You really want to use redis - makes your development much faster! 
+# If this is enabled your config will be adjusted automatically 
+# when running `install` or `init-project` 
+#
+REDIS_ENABLED=true
+
+#
+# If you want to use grunt for frontend development, 
+# let the container install npm dependencies & init grunt for you
+#
+GRUNT_ENABLED=true

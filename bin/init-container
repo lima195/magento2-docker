@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ -n "$LOCAL_USER" ]; then
+    echo "applying local user setting (user mapping)"
+    usermod -u $LOCAL_USER www-data
+fi
+
+if [ -n "$LOCAL_GROUP" ]; then
+    echo "applying local group setting (user mapping)"
+    groupmod -g $LOCAL_GROUP www-data
+fi

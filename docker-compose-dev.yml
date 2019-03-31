@@ -1,0 +1,28 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    links:
+      - db
+      - redis
+    env_file:
+      - env
+    volumes:
+      - ../magento2:/var/www/html
+      
+  db:
+    image: mysql:5.7
+    env_file:
+      - env
+
+  redis:
+    image: redis
+    ports:
+      - 6379
+
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - "8055:8025"
