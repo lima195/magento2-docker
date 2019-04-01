@@ -1,6 +1,7 @@
 version: '2'
 services:
   web:
+    container_name: docker-magento2_web_1
     image: netzkollektivgmbh/docker-magento2
     ports:
       - "80:80"
@@ -17,6 +18,7 @@ services:
           ipv4_address: 172.22.0.105
 
   db:
+    container_name: docker-magento2_db_1
     image: mysql:5.6
     env_file:
       - env
@@ -25,6 +27,7 @@ services:
           ipv4_address: 172.22.0.110
 
   redis:
+    container_name: docker-magento2_redis_1
     image: redis
     ports:
       - 6379
@@ -33,6 +36,7 @@ services:
           ipv4_address: 172.22.0.115
 
   mail:
+    container_name: docker-magento2_mail_1
     image: mailhog/mailhog
     ports:
       - "8025:8025"
