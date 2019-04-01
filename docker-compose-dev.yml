@@ -11,18 +11,38 @@ services:
       - env
     volumes:
       - ../magento2:/var/www/html
+    networks:
+        service1_net:
+          ipv4_address: 172.22.0.105
       
   db:
     image: mysql:5.7
     env_file:
       - env
+    networks:
+        service1_net:
+          ipv4_address: 172.22.0.110
+
 
   redis:
     image: redis
     ports:
       - 6379
+    networks:
+        service1_net:
+          ipv4_address: 172.22.0.115
 
   mail:
     image: mailhog/mailhog
     ports:
       - "8055:8025"
+    networks:
+        service1_net:
+          ipv4_address: 172.22.0.120
+
+networks:
+  service1_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.0.0/16
